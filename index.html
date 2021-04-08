@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Google Fonts. Para comentar subrayando -> CTRL + SHIFT + FORWARD SLASH -->
+  <!-- shortcut: cuando querés poner lo mismo en varias líneas, podés hacer el windows+alt y arrastrar la barra -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Styles Sheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!--Bootstrap Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/578ca4434d.js" crossorigin="anonymous"></script>
+
+  <!-- Veamos que se agrega el script de js de Bootstrap. Esto es para las funcionalidades propias de Bootstrap.
+  ej: cuando tocás el botón del header, que se expanda el menú. -->
+
+  <title>TinDog</title>
+</head>
+
+<body>
+
+  <!-- veamos que todas nuestras secciones tienen una clase que indica si tienen que ser de color o blancas -->
+  <section class="colored-section" id="title">
+
+    <!-- container fluid tiene width = 100% en todos sus breakpoints -->
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-md navbar-dark">
+
+        <!-- con navbar-expand-md, width >= 768px se expande la barra -->
+        <!-- la clase navbar tiene incluido el atributo flex-wrap.
+          Esto hace que si el header es demasiado pequeño en width, automáticamente los
+          elementos del mismo pasarán a estar stacked. -->
+        <!--navbar-expand-md tiene flex no wrap. Entonces si el width es lo
+          suficientemente largo, se verán uno al lado del otro.-->
+        <!-- navbar-dark se refiere al color del texto del header -->
+        <!-- bg-dark se refiere al color del backgroud header -->
+        <!-- bg-light le agrega el fondo horizontal gris -->
+        <!-- navbar-light le cambio el color a los links. -->
+
+        <a class="navbar-brand" href="">Tindog</a>
+
+        <!-- Esto es para agregar una especie de logo, que se diferencie
+          del navbar -->
+
+        <!-- Es muy importante donde agregues el logo. Si lo agregás antes del botón, se verá a la izquierda
+          si lo agregás después del botón, se verá a la derecha. -->
+
+        <!-- notar que visión mobile es de 350px aprox. Tablet es de 768 y desktop mayor a 1000px -->
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span> <!-- hamburger icon -->
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+          <ul class="navbar-nav ms-auto">
+
+            <!-- ms-auto le pone margen a la izquierda para tirarlo a la derecha
+            de todo
+            Opciones de márgen en Bootstrap las podés ver en: https://getbootstrap.com/docs/5.0/utilities/spacing/
+             -->
+            <!-- navbar-nav es el formato del header-->
+
+            <li class="nav-item ms-auto"> <!-- sin este ms-auto, cuando toco el hamburger icon el item se
+            vería centrado. Con ms-auto se ve a la derecha de todo (es lo que quiero) -->
+
+              <!-- nav-item hay que ponerlo a cada item del header-->
+
+              <a class="nav-link" href="#footer">Contact</a>
+              <!-- puedo hacer que los anchor tags del nav bar vayan a secciones específicas de nuestra página -->
+              <!-- nav-link colores y márgenes de los links del header -->
+              <!-- con ps regulo el padding a la derecha de cada item del navbar. -->
+            </li>
+            <li class="nav-item ms-auto">
+              <a class="nav-link" href="#pricing">Pricing</a>
+            </li>
+            <li class="nav-item ms-auto">
+              <a class="nav-link" href="#cta">Download</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-lg-6"> <!-- >= 992px se verá como "meet new interesting dogs.." y
+          foto tindog una al lado de la otra -->
+          <h1 class="big-heading">Meet new and interesting dogs nearby.</h1>
+          <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
+          <!-- Por default Font Awesome usa el i tag, es decir, el italic tag. No es lo mejor en términos de HTML
+          Best practices. Se puede usar el i tag, que es lo recomendado semánticamente, pero también podés
+          usar el span tag.  -->
+          <button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download</button>
+        </div>
+
+        <div class="col-lg-6 center">
+          <img class="title-image" src="images/iphone6.png" alt="iphone-mockup">
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section class="white-section" id="features">
+
+    <div class="row">
+
+      <div class="col-lg-4">
+        <i class="icon fas fa-check-circle fa-4x"></i>
+        <!-- El fa-4x es para darle mayor tamaño al ícono -->
+        <h3 class="feature-title">Easy to use</h3>
+        <p>So easy to use, even your dog could do it.</p>
+      </div>
+
+      <div class="col-lg-4">
+        <i class="icon fas fa-bullseye fa-4x"></i>
+        <h3 class="feature-title">Elite Clientele</h3>
+        <p>We have all the dogs, the greatest dogs.</p>
+      </div>
+
+      <div class="col-lg-4">
+        <i class="icon fas fa-heart fa-4x"></i>
+        <h3 class="feature-title">Guaranteed to work</h3>
+        <p>Find the love of your dog's life or your money back</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="colored-section" id="testimonials">
+
+    <div id="testimonials-carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+      <!-- si no usamos carousel slide, no habrá slides para pasar en el carousel -->
+      <!-- si sacamos data-bs-ride="false" y data-bs-interval= "false", el carousel estará activo y girará
+      ni bien cargo la página -->
+      <!-- el id me sirve para luego llamar a los items -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- el primer testimonio siempre irá como active -->
+          <h2 class="testimonial-text">I no longer have to sniff other dogs for love. I've found the hottest Corgi on TinDog. Woof.</h2>
+          <img class="testimonials_image" src="images/dog-img.jpg" alt="dog-profile">
+          <em>Pebbles, New York</em>
+        </div>
+        <div class="carousel-item">
+          <h2 class="testimonial-text">My dog used to be so lonely, but with TinDog's help, they've found the love of their life. I think.</h2>
+          <img class="testimonials_image" src="images/lady-img.jpg" alt="dog-profile">
+          <em>Beverly, Illinois</em>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev carousel_margin" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next carousel_margin" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </section>
+
+  <section class="colored-section" id="press">
+    <img class="press_logo" src="images/TechCrunch.png" alt="tc-logo">
+    <img class="press_logo" src="images/tnw.png" alt="tnw-logo">
+    <img class="press_logo" src="images/bizinsider.png" alt="biz-insider-logo">
+    <img class="press_logo" src="images/mashable.png" alt="mashable-logo">
+  </section>
+
+  <section class="white-section" id="pricing">
+    <h2 class="section-heading">A Plan for Every Dog's Need</h2>
+    <p>Simple and affordable prices plans for you and your dog</p>
+
+
+    <!-- Estas son las pricing cards. Como tenemos 3 pricings diferentes, necesitamos esta estructura 3 veces -->
+
+
+    <!-- <div class="card-group"> -> inicialmente le habíamos puesto la clase de card-group. Pero no es tan responsive
+  como el grid system de Bootstrap, que es muy bueno. Entonces reemplazamos esto por el grid system. -->
+    <div class="row justify-content-md-center">
+      <!-- sin justify-content-md-center, a partir de md se vería la tercera columna abajo a la izquierda -->
+      <div class="pricing-column col-lg-4 col-md-6">
+        <!-- de 0 a md se ven stacked. De md a lg se ven 2 arriba y una abajo (al medio). A partir de lg
+        se ven las tres una al lado de la otra -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Chihuahua</h3>
+          </div>
+
+          <div class="card-body">
+            <h2 class="price-text">Free</h2>
+            <p>5 Matches Per Day</p>
+            <p>10 Messages Per Day</p>
+            <p>Unlimited App Usage</p>
+            <button class="btn btn-lg btn-outline-dark" type="button">Sign Up</button> <!-- le agregamos las clases de botón
+            de Bootstrap. Siempre primero va btn, luego btn-lg (para el tamaño del botón). Con w-100
+          hacemos que el botón tome el full width de la tarjeta.  -->
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-column col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3>Labrador</h3>
+          </div>
+
+          <div class="card-body">
+            <h2 class="price-text">$49 / mo</h2>
+            <p>Unlimited Matches</p>
+            <p>Unlimited Messages</p>
+            <p>Unlimited App Usage</p>
+            <button class="btn btn-lg btn-dark" type="button">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-column col-lg-4 col-md-6"> <!-- esta última es col-md-12 para decirle que en ipad size tiene que ocupar
+      el 100% del width. También podría no especificar nada y eso sería equivalente a tomar el 100% del width. -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Mastiff</h3>
+          </div>
+
+          <div class="card-body">
+            <h2 class="price-text">$99 / mo</h2>
+            <p>Priority Listing</p>
+            <p>Unlimited Matches & Messages</p>
+            <p>Unlimited App Usage</p>
+            <button class="btn btn-lg btn-dark" type="button">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="colored-section" id="cta">
+    <div class="container-fluid">
+      <h3>Find the True Love of Your Dog's Life Today.</h3>
+      <button type="button" class="button-padding btn btn-dark btn-lg"><i class="fab fa-apple"></i> Download</button>
+      <button type="button" class="button-padding btn btn-light btn-lg"><i class="fab fa-google-play"></i> Download</button>
+    </div>
+  </section>
+
+  <footer class="white-section" id="footer">
+    <div class="alignment">
+      <i class="icon2 fab fa-twitter"></i>
+      <i class="icon2 fab fa-facebook-f"></i>
+      <i class="icon2 fab fa-instagram"></i>
+      <i class="icon2 fas fa-envelope"></i>
+    </div>
+    <p>© Copyright 2018 TinDog</p>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+/* Code refactoring: primero, selectores de html.
+Veamos que a cada h2, en cada sección de la página web, le pusimos clases diferentes con el mismo código.
+(font size + line height) Por qué hice eso? Dijimos que una de las cosas más importantes es DRY (Don't Repeat Yourself)
+y acá parecería que lo único que hago es estar repitiéndome. Esto es básicamente para hacer más fácil el debugging.
+Si estoy viendo mi página web y veo que algo está fallando en determinado h2, simplemente puedo inspeccionar desde el
+Chrome y veré que la parte que está fallando tiene asociada una clase puntual. Rápidamente veré que puede estar fallando.
+A esto se lo llama Modularity. Es decir, puedo fácilmente identificar una sección y ver cuál es el problema.
+ */
+
+/* La idea es que nuestros HTML elements hagan funciones muy generales (y no muy específicas de una parte
+puntual de nuestra página). La idea es que todo lo específico lo trabaje con selectores y con ids.  */
+
+/* HTML Selectors */
+
+body {
+  font-family: 'Montserrat', sans-serif; /* le damos la misma letra a toda la web */
+  text-align: center; /* centramos todo el contenido de la web */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Container Fluid */
+
+.container-fluid {
+  padding: 1% 8% 6%; /* margen hacia arriba, hacia derecha e izquierda y hacia abajo. Notar que si
+  no pusiera margen hacia derecha izquierda, se vería todo desde el comienzo de la pantalla * (borrar 8% para ver) */
+}
+
+/* Color Sections */
+
+/* Color secciones rosas_Color Sections */
+.colored-section {
+  background-color: #ff4c68; /* le damos este color rosa a todas las secciones que tengan "color" */
+  color: #fff; /* #000 black */ /*le damos color blanco a todas las secciones que tengan "color" */
+}
+
+/* Color secciones blancas_Color Sections */
+.white-section {
+  background-color: #fff; /* para las secciones de color blanco, el color de fondo es blanco */
+}
+
+/* Headings */
+
+/* 530, 484, 329,
+Most Common devices widths (mar-19 a mar-20):
+360px, 375, 414*/
+
+/* Heading principal del título_Headings */
+.big-heading { /* de 501px para arriba le doy un font size de 3.5rem */
+  font-size: 3.5rem;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+@media (max-width: 500px) { /* de 500px para abajo le doy un fontsize de 3rem */
+  .big-heading {
+    font-size: 3rem;
+  }
+}
+
+/* Heading del pricing_Headings */
+.section-heading { /* de 501px para arriba, aplica este tamaño de la sección de precios */
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 500px) { /* de 0 a 500 px, aplica este tamaño de la sección de precios */
+  .section-heading {
+    font-size: 2.8rem;
+  }
+}
+
+/* Navigation Bar */
+
+/* Formato de todo el navbar. Los selectors los formatea de abarcativo a menos abarcativo. */
+
+/* Separación entre navbar y contenido title section_Navigation Bar */
+.navbar {
+  padding-bottom: 6.5rem; /*sin este padding no habría separación entre navbar y text/imagen tindog */
+}
+
+/* Formato del logo_Navigation Bar */
+.navbar-brand {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* espacio a la derecha y a la izquierda de los elementos del navbar_Navigation Bar */
+.nav-item {
+  padding: 0 5px; /* sin este padding, los elementos cuando están desplegados se verían muy juntos */
+}
+
+/* Fuente y tamaño de los elementos del navbar_Navigation Bar */
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* Sección Title */
+
+/* Alineación texto del título_Title */
+#title { /* tamaños mayores a 991px */
+  text-align: left; /* en el body puse text-align: center; Eso hacía que se viera toda la escritura del título
+  centrada. Entonces volvemos a ponerla en text-align: left; */
+}
+
+@media (max-width: 991px) { /* para tamaños menores a 991px */
+  #title {
+    text-align: center;
+  }
+}
+
+/* Margen de botones de download_Title */
+.download-button { /* desde 501px hacia arriba, los botones están separados. Estos son los márgenes */
+  margin: 8% 3% 5% 1%
+}
+
+@media (max-width: 500px) { /* Los botones están stacked hasta 437px. Hasta máx de 500px
+  se le pone un margen de 1% hacia abajo a cada botón (en la visión stacked quedarán separados) */
+  .download-button {
+    margin-bottom: 1%;
+  }
+}
+
+/* Imagen TinDog para tamaños > 991px_Title */
+.title-image {
+  width: 21%; /* tamaño imagen Tindog */
+  min-width: 220.703px; /* para que no se achique indefinidamente la imagen. Notemos que el tamaño se puso
+  en width %. */
+  transform: rotate(25deg); /*números positivos rotan a la derecha. Negativos rotan a la izquierda */
+  position: absolute; /* esto para que funcione el z-index. Si el elemento tiene position static (por default) el
+  z-index no funciona. Es position absolute para que tome tamaño en relación a su último elemento posicionado.
+  En este caso, como no hay padres posicionados, tomará como referencia el body (por eso el width es de 21% y
+  la imagen se ve bien) */
+}
+
+/* Imagen TinDog para tamaños < 991px y centrado del contenido_Title */
+@media (max-width: 991px) {
+  .title-image {
+    position: static; /* cuando pasamos los 991px para abajo, la idea es que la imagen vuelva a static para que se vea
+    completa */
+    width: 33%; /* tamaño de la imagen */
+    transform: rotate(0); /*rota a 0 -> straight up */
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Centrado de la Imagen TinDog_Title */
+.center {
+  display: flex; /* Se tiene que poner display: flex; para poder centrar en el medio del 50% */
+  justify-content: center; /* centrado */
+}
+
+/* Sección Features */
+
+#features {
+  padding: 7% 10%; /* padding específico de la sección. Diferente de container-fluid de la sección de Title */
+  position: relative; /* esto para poder ubicar la sección de features arriba de la imagen de tindog. Es relative
+  porque la tengo que dejar exactamente donde está */
+  /* z-index: 1; */ /* esto para ubicar efectivamente la sección de features arriba de la imagen de tindog. Aclaración
+  importante: los elementos posiconados que vengan luego en el HTML flow estarán on top, aunque no tengan un z-index.
+  Esto quiere decir que eventualmente podría borrar la línea de z-index: 1; y el feature section se vería on top
+  de la imagen de tindog */
+}
+
+/* Títulos de cada Feature_Features */
+.feature-title {
+  font-size: 1.5rem; /* tamaño del título del feature: Easy to use, Elite clientele, Guaranteed to Work */
+}
+
+/* Íconos_Features */
+.icon {
+  color: #ef8172; /* color rosado al fas icon */
+  margin-bottom: 1rem; /* margen hacia abajo de cada ícono (para que no quede pegado al texto de abajo) */
+}
+
+/* Íconos_Features */
+.icon:hover { /* Queremos que cuando pase el mouse por el ícono haya un hover. Eso se hace con las pseudoclases */
+  color: #ff4c68; /*cuando el ícono está en el hover state cambia a este color (desde el color natural) */
+}
+
+/* Sección Testimonials */
+
+#testimonials {
+  background-color: #ef8172; /* le agregamos un color rosado más claro que el de las "colored-section" */
+}
+
+/* Imagen del testimonio_Testimonials */
+.testimonials_image {
+  width: 10%; /* achicamos la imagen */
+  border-radius: 100%; /* hacemos la imagen circular */
+  margin: 20px; /* margen a los 4 costados */
+}
+
+/* Texto del testimonio_Testimonials */
+.testimonial-text { /* mayor a 991px este tamaño de testimonio */
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 500px) { /* hasta 500 px, este tamaño del texto del testimonio */
+  .testimonial-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 803px) { /* entre 501px y 803px inclusive, este tamaño del texto
+  del testimonio */
+  .testimonial-text {
+    font-size: 2.1rem;
+  }
+}
+
+@media (min-width: 804px) and (max-width: 991px) { /* entre 804 y 991 inclusive, este tamaño */
+  .testimonial-text {
+    font-size: 2.4rem;
+  }
+}
+
+/* Margen de flechas del carousel_Testimonials */
+.carousel_margin  {
+  margin-bottom: 4rem; /* le ponés un margin bottom a la flecha. En caso de sacarlo, la flecha se vería mucho más
+  bajo, dando la impresión que "no está centrada con el texto". */
+}
+
+/* Texto del testimonio padding_Testimonials */
+.carousel-item {
+  padding: 7% 15%; /* se le pone padding a cada item del carousel, para que no se vean las flechas de cambio de slide
+  pegadas al texto. Este padding se refiere al texto del testimonio. Si sacáramos el padding 15%, por ejemplo,
+  el texto del testimonio se vería solapado a las flechitas de cambio de testimonio  */
+}
+
+/* Sección Press */
+
+#press {
+  background-color: #ef8172; /* le doy el mismo color que a la sección anterior. De esta forma parece como si fuera
+  todo parte de la misma */
+  padding-bottom: 3%; /* margen hacia abajo (para que no quede pegado al suelo) */
+}
+
+/* Imágenes logos_Press */
+.press_logo {
+  width: 15%; /* achicamos tamaño imágenes de prensa */
+  min-width: 100px; /* dado que el tamaño irá escalando porcentualmente, le ponemos un "piso" sobre el cual
+  no podrá disminuir de ese tamaño */
+  margin: 20px 20px 50px; /* margen hacia arriba, derecha-izquierda y abajo de los logos */
+}
+
+/* Pricing Section */
+
+/* pricing es lo que más toqueteo por el tema márgenes izquierda y derecha, y que se vean todas las cajas
+de pricing del mismo height */
+
+/* Padding sección pricing_Pricing */
+#pricing { /* de 506px a 991px, aplica este margen */
+  padding: 100px 13%; /* inicialmente, sin este padding, se veía un overflow en el eje x. Probar borrarlo para ver */
+}
+
+@media (max-width: 505px) { /* de 0 a 505px, aplica este margen */
+  #pricing {
+    padding: 3.25rem 13%;
+  }
+}
+
+@media (min-width: 992px) { /* de 992px para arriba, aplica este margen */
+  #pricing {
+    padding: 100px 4.5%
+  }
+}
+
+/* Márgenes entre cada opción de Pricing_Pricing */
+.pricing-column {
+  padding: 3% 1%; /* con esto le agrego padding hacia arriba, hacia abajo, derecha e izquierda de la tabla de pricing */
+}
+
+
+/* Tamaño del precio_Pricing */
+.price-text { /* mayor a 501px */
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 500px) { /* 500px o menor */
+  .price-text {
+    font-size: 2rem;
+  }
+}
+
+/* Sección cta */
+
+/* margen adicional cta para tamaños mayores a 500px_cta */
+#cta {
+  padding: 70px 3%; /* ojo que cta tiene container-fluid. Le estoy poniendo un margen hacia derecha-izquierda
+  adcional de 3% */
+}
+
+/* formato h3 para tamaños mayores a 500px_cta */
+#cta h3 {
+  font-size: 3.5rem;
+  line-height: 1.5;
+  padding-bottom: 40px; /* separación entre "Find the True Love.." y botones. */
+}
+
+/* Padding de botones para tamaños mayores a 500px_cta */
+.button-padding {
+  margin-right: 3%; /* separación entre botones */
+}
+
+/* formato para tamaños menores a 500px_cta */
+@media (max-width: 500px) {
+  #cta {
+    padding-left: 0;
+    padding-right: 0; /* le saco padding-right y padding-left cuando es menor a 500px */
+  }
+
+  #cta h3 {
+    font-size: 3rem;
+  }
+
+  .button-padding {
+    margin-bottom: 1rem; /* separación entre botones hasta 500px, dado que están stacked */
+  }
+}
+
+/* Sección Footer */
+
+/* Margen de la sección_Footer */
+#footer {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+/* Márgenes entre íconos_Footer */
+.icon2 {
+  margin: 0 1rem 1rem 0; /* margen entre íconos del footer */
+}
+
+/* Alineación (parche)_Footer */
+.alignment {
+  margin-left: 20px; /* pequeño alineamiento para que los íconos queden centrados respecto del Copyright */
+}
