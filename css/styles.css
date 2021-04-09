@@ -15,6 +15,8 @@ puntual de nuestra página). La idea es que todo lo específico lo trabaje con s
 body {
   font-family: 'Montserrat', sans-serif; /* le damos la misma letra a toda la web */
   text-align: center; /* centramos todo el contenido de la web */
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
