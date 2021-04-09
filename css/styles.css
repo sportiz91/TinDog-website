@@ -53,14 +53,14 @@ Most Common devices widths (mar-19 a mar-20):
 
 /* Heading principal del título_Headings */
 .big-heading { /* de 501px para arriba le doy un font size de 3.5rem */
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   line-height: 1.5;
   font-weight: 900;
 }
 
 @media (max-width: 500px) { /* de 500px para abajo le doy un fontsize de 3rem */
   .big-heading {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
