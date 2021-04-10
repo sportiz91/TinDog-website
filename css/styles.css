@@ -160,6 +160,13 @@ Most Common devices widths (mar-19 a mar-20):
   }
 }
 
+/* Margen Imagen TinDog para tamaños < 500px_Title */
+@media (max-width: 500px) {
+  .title-image {
+    margin-top: 2.2rem;
+  }
+}
+
 /* Centrado de la Imagen TinDog_Title */
 .center {
   display: flex; /* Se tiene que poner display: flex; para poder centrar en el medio del 50% */
