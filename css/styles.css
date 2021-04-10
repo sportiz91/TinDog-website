@@ -268,7 +268,7 @@ Most Common devices widths (mar-19 a mar-20):
   margin: 20px 20px 50px; /* margen hacia arriba, derecha-izquierda y abajo de los logos */
 }
 
-/* Pricing Section */
+/* Sección Pricing */
 
 /* pricing es lo que más toqueteo por el tema márgenes izquierda y derecha, y que se vean todas las cajas
 de pricing del mismo height */
@@ -336,7 +336,7 @@ de pricing del mismo height */
   }
 
   #cta h3 {
-    font-size: 3rem;
+    font-size: 2.3rem;
   }
 
   .button-padding {
