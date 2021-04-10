@@ -60,7 +60,7 @@ Most Common devices widths (mar-19 a mar-20):
 
 @media (max-width: 500px) { /* de 500px para abajo le doy un fontsize de 3rem */
   .big-heading {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 }
 
@@ -88,8 +88,14 @@ Most Common devices widths (mar-19 a mar-20):
 /* Formato del logo_Navigation Bar */
 .navbar-brand {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 2.3rem;
+  font-size: 2.8rem;
   font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .navbar-brand {
+    font-size: 2.1rem;
+  }
 }
 
 /* espacio a la derecha y a la izquierda de los elementos del navbar_Navigation Bar */
