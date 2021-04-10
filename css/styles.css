@@ -61,6 +61,7 @@ Most Common devices widths (mar-19 a mar-20):
 @media (max-width: 500px) { /* de 500px para abajo le doy un fontsize de 3rem */
   .big-heading {
     font-size: 2.3rem;
+    margin-bottom: 10px;
   }
 }
 
